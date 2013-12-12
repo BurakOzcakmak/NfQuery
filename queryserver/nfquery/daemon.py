@@ -87,7 +87,11 @@ class Daemon:
         atexit.register(self.delpid)
         pid = str(os.getpid())
         file(self.pidfile,'w+').write("%s\n" % pid)
+<<<<<<< HEAD
         if self.user:
+=======
+        if self.user and os.getuid() == 0:
+>>>>>>> devel
             os.chown(self.pidfile, pwd.getpwnam(self.user)[2], grp.getgrnam(self.group)[2])
     
     def drop_privileges(self):

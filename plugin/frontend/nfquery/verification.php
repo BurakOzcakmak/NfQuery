@@ -22,7 +22,11 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 <script src="/nfsen/plugins/nfquery/js/running.js"></script>
+=======
+<script src="plugins/nfquery/js/running.js"></script>
+>>>>>>> devel
 <div class="row-fluid">
     <div class="span12">
         <h4>Output Of Verification Query</h4>

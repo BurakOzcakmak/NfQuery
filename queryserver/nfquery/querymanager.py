@@ -24,8 +24,13 @@ import subprocess
 import time
 import pprint
 from datetime import datetime
+<<<<<<< HEAD
 # nfquery imports
 import db
+=======
+
+# nfquery imports
+>>>>>>> devel
 import logger
 from models import *
 from storm.locals import In
@@ -36,6 +41,7 @@ __all__ = ['QueryManager']
 
 class QueryManager:
 
+<<<<<<< HEAD
     def __init__(self, sources=None, plugins=None):
         self.qmlogger = logger.createLogger('querymanager')
         self.qmlogger.debug('In %s' % sys._getframe().f_code.co_name)
@@ -44,6 +50,16 @@ class QueryManager:
         self.sources = sources
         self.plugins = plugins
         self.QGenerator = QueryGenerator(sources)
+=======
+    def __init__(self, store = None, sources=None, plugins=None):
+        self.qmlogger = logger.createLogger('querymanager')
+        self.qmlogger.debug('In %s' % sys._getframe().f_code.co_name)
+        self.qmlogger.info('Starting QueryManager')
+        self.store = store
+        self.sources = sources
+        self.plugins = plugins
+        self.QGenerator = QueryGenerator(self.store, sources)
+>>>>>>> devel
         
 
     def start(self):
@@ -52,6 +68,14 @@ class QueryManager:
         self.executeParsers()
         self.createSubscriptionPackets()
 
+<<<<<<< HEAD
+=======
+    def setStore(self, store):
+        self.store = store
+        self.QGenerator.setStore(store)
+    
+
+>>>>>>> devel
     ###########################################################
     ### Plugin Management                                   ###
     ###########################################################

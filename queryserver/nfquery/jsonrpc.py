@@ -13,27 +13,39 @@
 #
 # Copyright NfQuery Team Members
 
+<<<<<<< HEAD
 #!/usr/local/bin/python
 
 
 import sys
 import hashlib
 import time
+=======
+import sys
+import hashlib
+>>>>>>> devel
 
 from txjsonrpc.web import jsonrpc
 from twisted.web import server
 from twisted.internet import reactor, ssl
 from twisted.application import service,internet
 
+<<<<<<< HEAD
 import db
 from models import Plugin, Prefix, Alert
 from logger import createLogger
+=======
+from models import Plugin, Prefix, Alert
+from logger import createLogger
+from querymanager import QueryManager
+>>>>>>> devel
 
 class jsonRPCServer(jsonrpc.JSONRPC):
     """
     An example object to be published.
     """
 
+<<<<<<< HEAD
     def __init__(self, queryManager):
         self.rpclogger = createLogger('RPC')
         self.rpclogger.info('Starting JSONRPCServer')
@@ -60,11 +72,25 @@ class jsonRPCServer(jsonrpc.JSONRPC):
         Raise a Fault indicating that the procedure should not be used.
         """
         raise jsonrpc.Fault(123, "The fault procedure is faulty.")
+=======
+    def __init__(self, queryServer = None):
+        ##ugur
+        self.rpclogger = createLogger('RPC')
+        self.rpclogger.info('Starting JSONRPCServer')
+        self.queryServer = queryServer
+        self.queryManager = QueryManager(store=self.queryServer.createStore(), sources=self.queryServer.config.sources, plugins=self.queryServer.config.plugins)
+
+    def render(self, request):
+        # check if db connection is lost or not!
+        self.queryManager.setStore(self.queryServer.dbEnsureConnected(self.queryManager.store))
+        return (jsonrpc.JSONRPC.render(self, request))
+>>>>>>> devel
 
     def jsonrpc_push_alerts(self, plugin_ip, query_id_list, start_time, end_time):
         self.rpclogger.debug('In %s' % sys._getframe().f_code.co_name)
         self.queryManager.pushAlerts(plugin_ip, query_id_list, start_time, end_time)
 
+<<<<<<< HEAD
     
     def jsonrpc_push_statistics(self, plugin_id, query_id, number_of_flows, number_of_bytes, number_of_packets, time_window):
         self.rpclogger.debug('In %s' % sys._getframe().f_code.co_name)
@@ -81,10 +107,25 @@ class jsonRPCServer(jsonrpc.JSONRPC):
         if plugin is None:
             result.append(0);
             print result
+=======
+    def jsonrpc_push_statistics(self, plugin_id, query_id, number_of_flows, number_of_bytes, number_of_packets, time_window):
+        self.rpclogger.debug('In %s' % sys._getframe().f_code.co_name)
+        self.queryManager.pushStatistics(plugin_ip, query_id_list, start_time, end_time)
+
+    def jsonrpc_register(self,plugin_ip):
+        result = []
+        self.rpclogger.debug('In %s' % sys._getframe().f_code.co_name)
+        # DEBUG mode da hangi fieldlarin hatali geldigini yazdirabiliriz tabiki sadece query server ' a.
+        plugin = self.queryManager.store.find(Plugin, Plugin.plugin_ip == plugin_ip).one()
+        #TODO Anywhere plugins registered flags not set. Flags must be define.
+        if plugin is None:
+            result.append(0);
+>>>>>>> devel
             return result
         else:
             if plugin.registered == 1:
                 result.append(1)
+<<<<<<< HEAD
                 print result
                 return result
             if plugin.registered == 2:
@@ -96,6 +137,15 @@ class jsonRPCServer(jsonrpc.JSONRPC):
                 print result
                 return result
         print result
+=======
+                return result
+            if plugin.registered == 2:
+                result.append(2)
+                return result
+            if plugin.registered == 3:
+                result.append(3)
+                return result
+>>>>>>> devel
         return result
 #    print organization
 #    print prefix_list
@@ -120,8 +170,13 @@ class jsonRPCServer(jsonrpc.JSONRPC):
 #            return result
 #        else:
 #            checksum = hashlib.md5()
+<<<<<<< HEAD
 #            checksum.update( organization + adm_name + adm_mail + 
 #                             adm_tel      + adm_publickey_file  + 
+=======
+#            checksum.update( organization + adm_name + adm_mail +
+#                             adm_tel      + adm_publickey_file  +
+>>>>>>> devel
 #                             prefix_list  + plugin_ip )
 #            if checksum.hexdigest() != plugin.checksum:
 #                message = 'Your plugin information doesn\'t match with the QueryServer side.'
@@ -165,14 +220,22 @@ class jsonRPCServer(jsonrpc.JSONRPC):
         self.rpclogger.debug('In %s' % sys._getframe().f_code.co_name)
         self.rpclogger.debug('returning subscriptions detail')
         return self.queryManager.getSubscription(subscription)
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> devel
     def jsonrpc_get_subscriptions(self):
         self.rpclogger.debug('In %s' % sys._getframe().f_code.co_name)
         self.rpclogger.debug('returning subscriptions')
         subs = self.queryManager.getAllSubscriptions()
         return subs
 
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> devel
     def jsonrpc_get_subscription(self, name, method_call):
         self.rpclogger.debug('In %s' % sys._getframe().f_code.co_name)
         self.rpclogger.debug('getting subscription information')
@@ -183,10 +246,17 @@ class jsonRPCServer(jsonrpc.JSONRPC):
     def jsonrpc_get_all_prefixes(self):
         self.rpclogger.debug('In %s' % sys._getframe().f_code.co_name)
         self.rpclogger.debug('getting all prefix list information')
+<<<<<<< HEAD
         plugin_list = self.store.find(Plugin)
         prefix_list = {}
         for plugin in plugin_list:
             prefix_list[plugin.id] = plugin.prefix.prefix
+=======
+        plugin_list = self.queryManager.store.find(Plugin)
+        prefix_list = {}
+        for plugin in plugin_list:
+            prefix_list[plugin.id] = plugin.prefix.prefix.replace(" ","").split(',')
+>>>>>>> devel
         print prefix_list
         return prefix_list
 
@@ -195,11 +265,19 @@ class jsonRPCServer(jsonrpc.JSONRPC):
         self.rpclogger.debug('In %s' % sys._getframe().f_code.co_name)
         self.rpclogger.debug('getting plugin id of ip address')
         return self.queryManager.getPluginId(ip_address)
+<<<<<<< HEAD
  
     def jsonrpc_get_prefixes(self, ip_address):
         self.rpclogger.debug('In %s' % sys._getframe().f_code.co_name)
         self.rpclogger.debug('getting prefix list information')
         plugin = self.store.find( Plugin, 
+=======
+
+    def jsonrpc_get_prefixes(self, ip_address):
+        self.rpclogger.debug('In %s' % sys._getframe().f_code.co_name)
+        self.rpclogger.debug('getting prefix list information')
+        plugin = self.queryManager.store.find( Plugin,
+>>>>>>> devel
                                      Plugin.plugin_ip == unicode(ip_address)
                                    ).one()
         if not plugin:
@@ -208,7 +286,11 @@ class jsonRPCServer(jsonrpc.JSONRPC):
             return
         else:
              p_list = {}
+<<<<<<< HEAD
              p_list[plugin.id] = plugin.prefix.prefix
+=======
+             p_list[plugin.id] = plugin.prefix.prefix.replace(" ","").split(',')
+>>>>>>> devel
              return p_list
 
 
@@ -221,11 +303,16 @@ class jsonRPCServer(jsonrpc.JSONRPC):
     def jsonrpc_get_my_alerts(self, plugin_ip):
         self.rpclogger.debug('In %s' % sys._getframe().f_code.co_name)
         return self.queryManager.getMyAlerts(plugin_ip)
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> devel
     def jsonrpc_generate_query(self, query_info_list, mandatory, plugin_ip):
         self.rpclogger.debug('In %s' % sys._getframe().f_code.co_name)
         return self.queryManager.generateQuery(query_info_list, mandatory, plugin_ip)
 
+<<<<<<< HEAD
  
 #def getExampleService():
 #    r = Example()
@@ -256,3 +343,5 @@ class jsonRPCServer(jsonrpc.JSONRPC):
 #    #reactor.run()
 
 
+=======
+>>>>>>> devel

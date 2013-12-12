@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#!/usr/bin/env python
+>>>>>>> devel
 # This file is part of NfQuery.  NfQuery is free software: you can
 # redistribute it and/or modify it under the terms of the GNU General Public
 # License as published by the Free Software Foundation, version 3.
@@ -13,8 +17,11 @@
 #
 # Copyright NfQuery Team Members
 
+<<<<<<< HEAD
 #!/usr/local/bin/python
 
+=======
+>>>>>>> devel
 import datetime
 import os
 import sys 
@@ -85,9 +92,15 @@ if __name__ == "__main__":
     source_name = 'malc0de'
     source_link = 'http://malc0de.com/bl/IP_Blacklist.txt'
     source_dir  =  os.path.dirname(__file__)
+<<<<<<< HEAD
     source_file = source_dir + './malc0deSource.txt'
     output_type = 1 # Ip list
     output_file = source_dir + './malc0deOutput.txt'
+=======
+    source_file = source_dir + '/malc0deSource.txt'
+    output_type = 1 # Ip list
+    output_file = source_dir + '/malc0deOutput.txt'
+>>>>>>> devel
 
     #fetch_source(source_link, source_file)
     try:

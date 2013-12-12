@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#!/usr/bin/env perl
+>>>>>>> devel
 # This file is part of NfQuery.  NfQuery is free software: you can
 # redistribute it and/or modify it under the terms of the GNU General Public
 # License as published by the Free Software Foundation, version 3.
@@ -13,7 +17,10 @@
 #
 # Copyright NfQuery Team Members
 
+<<<<<<< HEAD
 #!/usr/bin/perl
+=======
+>>>>>>> devel
 
 package nfquery;
 use NfProfile;
@@ -264,12 +271,23 @@ sub ipInPrefixes{
 	my $ip = shift;
 	
 	foreach my $plugin_id (keys %prefixes){
+<<<<<<< HEAD
         my $prefix = $prefixes{$plugin_id};
 		my $block = NetAddr::IP->new($prefix);
 		my $ip_address = NetAddr::IP->new($ip);
 		if($ip_address->within($block)){
 			return $plugin_id;
 		}
+=======
+        my @prefixes = @{$prefixes{$plugin_id}};
+        foreach my $prefix (@prefixes){
+	    	my $block = NetAddr::IP->new($prefix);
+	    	my $ip_address = NetAddr::IP->new($ip);
+	    	if($ip_address->within($block)){
+	    		return $plugin_id;
+	    	}
+        }
+>>>>>>> devel
 	}
 
 	return 0;	
@@ -278,7 +296,11 @@ sub ipInPrefixes{
 sub dateToTimestamp{
     my $date = shift;
     syslog('debug', "$date");
+<<<<<<< HEAD
     my ($year,$mon,$mday,$hour,$min,$sec, $msec) = split(/[\s-:\.]+/, $date);
+=======
+    my ($year,$mon,$mday,$hour,$min,$sec, $msec) = split(/[-\s:\.]+/, $date);
+>>>>>>> devel
     my $time = timelocal($sec,$min,$hour,$mday,$mon-1,$year);
     return $time
 
@@ -683,7 +705,11 @@ sub findAlertsInOutputOfQuery{
     my @outputOfQuery = @{$output_ref};
     
     if ($subscriptionName){
+<<<<<<< HEAD
         %stats = %$stats->{$subscriptionName}{$query_id};
+=======
+        %stats = %{$stats->{$subscriptionName}{$query_id}};
+>>>>>>> devel
     }else{
         %stats = %{$stats_ref};
     }

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #!/usr/local/bin/python
+=======
+#!/usr/bin/env python
+>>>>>>> devel
 
 import argparse
 import os, sys

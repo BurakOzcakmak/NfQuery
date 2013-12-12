@@ -6,7 +6,11 @@ function getQueryStatus(){
 }
 
 function getMyAlerts(){
+<<<<<<< HEAD
 	$.post("/nfsen/plugins/nfquery/ajaxhandler.php",{ geAtlerat: "getAlerts"},function(data){
+=======
+	$.post("plugins/nfquery/ajaxhandler.php",{ getAlerts: "getAlerts"},function(data){
+>>>>>>> devel
 		alert(data[0]);
 		var alertDiv = document.getElementById("alertDiv");
 		alertDiv.setAttribute("class","alert alert-block alert-error fade in");
@@ -18,7 +22,11 @@ function getMyAlerts(){
 
 
 function getSubscriptionDetail(name){
+<<<<<<< HEAD
 	$.post("/nfsen/plugins/nfquery/ajaxhandler.php",{ name: name},function(data){
+=======
+	$.post("plugins/nfquery/ajaxhandler.php",{ name: name},function(data){
+>>>>>>> devel
                 for(var i = document.getElementById("detail_table").rows.length; i > 0;i--){
                         document.getElementById("detail_table").deleteRow(i -1);
                 }
@@ -113,7 +121,11 @@ function getSubscriptionDetail(name){
 
 function runQueries(){
 	var subscription = $('#subscripted').val();
+<<<<<<< HEAD
 	$.post("/nfsen/plugins/nfquery/ajaxhandler.php", {run:1, subscription:subscription}, function(data){});
+=======
+	$.post("plugins/nfquery/ajaxhandler.php", {run:1, subscription:subscription}, function(data){});
+>>>>>>> devel
 }
 
 $(document).ready(function() {

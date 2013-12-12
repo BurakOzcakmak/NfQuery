@@ -5,7 +5,11 @@ from config import Config, ConfigError
 import sys
 def get_store():
     configfile = "/home/hamza/nfquery/cfg/nfquery.conf"
+<<<<<<< HEAD
 #    configfile = "/home/ahmetcan/projects/conf/cfg/nfquery.conf"
+=======
+#    configfile = "/home/ahmetcan/Workspace/projects/cfg/nfquery.conf"
+>>>>>>> devel
     try:
         config = Config(configfile)
     except ConfigError, e:

@@ -1,5 +1,9 @@
 function showOutput(subscriptionName){
+<<<<<<< HEAD
 	$.get('/nfsen/plugins/nfquery/ajaxhandler.php', 
+=======
+	$.get('plugins/nfquery/ajaxhandler.php', 
+>>>>>>> devel
 		{getOutputOfSubscription: 1, 
 		 subscriptionName: subscriptionName
 		},
@@ -10,7 +14,11 @@ function showOutput(subscriptionName){
 }
 
 function getOutputOfQuery(cell, subscriptionName){
+<<<<<<< HEAD
 	$.get('/nfsen/plugins/nfquery/ajaxhandler.php', 
+=======
+	$.get('plugins/nfquery/ajaxhandler.php', 
+>>>>>>> devel
 		{getOutputOfQuery: 1,
 		 subscriptionName: subscriptionName,
 		 query_id: $(cell).html()
@@ -30,8 +38,13 @@ function getOutputOfQuery(cell, subscriptionName){
 function showStatistics(subscriptionName){
 	if ($("#" + subscriptionName + "CollapseInner").hasClass('filled'))
 		return;
+<<<<<<< HEAD
 	$("#" + subscriptionName + "CollapseInner").html('<center><img src="/nfsen/plugins/nfquery/img/loading.gif" class="loading">Content Loading...</center>');
 	$.get('/nfsen/plugins/nfquery/ajaxhandler.php', 
+=======
+	$("#" + subscriptionName + "CollapseInner").html('<center><img src="plugins/nfquery/img/loading.gif" class="loading">Content Loading...</center>');
+	$.get('plugins/nfquery/ajaxhandler.php', 
+>>>>>>> devel
 		{getStatisticsOfSubscription: 1,
 		 subscriptionName: subscriptionName
 		},
@@ -53,7 +66,11 @@ function showStatistics(subscriptionName){
 }
 
 function checkQueryStatus(){
+<<<<<<< HEAD
     $.post("/nfsen/plugins/nfquery/ajaxhandler.php", {checkQueryStatus:"checkQueries"}, function(data){
+=======
+    $.post("plugins/nfquery/ajaxhandler.php", {checkQueryStatus:"checkQueries"}, function(data){
+>>>>>>> devel
     	var data = JSON.parse(data);
 		for (var key in data){
 			$("#" + key + "Bar").css('width', data[key] + "%");
@@ -78,7 +95,11 @@ function lookup(anchor){
 	$(anchor).popover({title:'Lookup', content:'Content Loading...', trigger: 'hover'});
 	$(anchor).popover('show');
 	$(anchor).addClass('filled');
+<<<<<<< HEAD
 	$.get("/nfsen/plugins/nfquery/ajaxhandler.php", {lookup:1, ip:ip},
+=======
+	$.get("plugins/nfquery/ajaxhandler.php", {lookup:1, ip:ip},
+>>>>>>> devel
 		function (data){
 			$(anchor).popover('hide');
 			$(anchor).data('popover', null)
@@ -89,7 +110,11 @@ function lookup(anchor){
 }
 
 function pushOutput(subscriptionName){
+<<<<<<< HEAD
     $.get("/nfsen/plugins/nfquery/ajaxhandler.php", 
+=======
+    $.get("plugins/nfquery/ajaxhandler.php", 
+>>>>>>> devel
           {pushOutput:1, subscriptionName:subscriptionName},
           function(data){
               $("#nfqueryTab").val("Running");

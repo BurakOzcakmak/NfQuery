@@ -6,7 +6,11 @@ function subscription_toggle(button){
 		button_status = 'On';
 	}
 	//Send button status to be persistence
+<<<<<<< HEAD
 	$.post("/nfsen/plugins/nfquery/ajaxhandler.php",
+=======
+	$.post("plugins/nfquery/ajaxhandler.php",
+>>>>>>> devel
 		{
 			button_status: button_status,
 			button_id: button.attr('id')
@@ -16,7 +20,11 @@ function subscription_toggle(button){
 }
 
 function getSubscriptionDetail3(name){
+<<<<<<< HEAD
 	$.post("/nfsen/plugins/nfquery/ajaxhandler.php",{ name: name},function(data){
+=======
+	$.post("plugins/nfquery/ajaxhandler.php",{ name: name},function(data){
+>>>>>>> devel
 		$(".collapse").collapse();
                 $("#subscription_details").html(data);
   
@@ -41,7 +49,11 @@ function getSubscriptionDetail3(name){
 function runQueries(){
 	var subscriptions = $('#subscripted').val() || [];
 	subscriptions = subscriptions.join(',');
+<<<<<<< HEAD
 	$.post("/nfsen/plugins/nfquery/ajaxhandler.php", {run:1, subscriptions: subscriptions}, function(data){ 
+=======
+	$.post("plugins/nfquery/ajaxhandler.php", {run:1, subscriptions: subscriptions}, function(data){ 
+>>>>>>> devel
 		//alert(data);
 	 });
 }
@@ -55,16 +67,29 @@ function markMandatoryQueries(button, category){
 	}
 }
 
+<<<<<<< HEAD
 function getFilters(){
     var isNull = true;
 	var queryMap = {};
+=======
+function getFilters(button){
+    var isNull = true;
+	var queryMap = {};
+    
+    button.html("Running <img style='width:20px;height:20px' src='plugins/nfquery/img/loading.gif'>");
+>>>>>>> devel
 	queryMap['queries'] = {};
     
 	$('#queryDiv .accordion-body').each(function(){
 		subscriptionName = $(this).attr('id');
 		queryMap['queries'][subscriptionName] = {};
+<<<<<<< HEAD
 		queryMap['queries'][subscriptionName]['mandatory'] = []
 		queryMap['queries'][subscriptionName]['optional'] = []
+=======
+		queryMap['queries'][subscriptionName]['mandatory'] = [];
+		queryMap['queries'][subscriptionName]['optional'] = [];
+>>>>>>> devel
 		$(this).find('.mandatory_filter').each(function(){
 			if($(this).attr('checked')){
                 isNull = false;
@@ -84,15 +109,39 @@ function getFilters(){
 	source = $('#flowSource').val();
     if (isNull){
        alert("Select a Query First !");
+<<<<<<< HEAD
     }else{
 	    $.post('/nfsen/plugins/nfquery/ajaxhandler.php', {runQueries:queryMap, source:source}, function(data){});
 	    	
+=======
+       button.html("Run !");
+    }else{
+	  //$.post('plugins/nfquery/ajaxhandler.php', {runQueries:queryMap, source:source}, function(data){});
+	  //Sync post solves the problem
+        $.ajax({
+           type: "POST",
+           url: "plugins/nfquery/ajaxhandler.php",
+           data: {runQueries:queryMap, source:source},
+           async: false
+           }).done(function() {
+           }
+        );  	
+>>>>>>> devel
 	    $('#nfqueryTab').val('Running');
 	    $('#navigationForm').submit();
     }
 
 }
 
+<<<<<<< HEAD
+=======
+function go(){
+            $('#nfqueryTab').val('Running');
+	    $('#navigationForm').submit();
+
+
+}
+>>>>>>> devel
 function changeCollapseIcon(column){
 	var icon = column.find('i');
 	if (icon.hasClass('icon-chevron-down')){
@@ -128,7 +177,13 @@ $(document).ready(function() {
 	$("#flowSource option:first").attr('selected','selected');
 
 	$(".collapse").collapse();
+<<<<<<< HEAD
 	$('#runQueries').click(getFilters);
+=======
+	$('#runQueries').click(function(){
+            getFilters($(this));
+    });
+>>>>>>> devel
 	
 	$('.mandatory_query_popover').popover({
 		title: "Mandatory Query",

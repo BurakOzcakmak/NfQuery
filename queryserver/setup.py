@@ -13,20 +13,28 @@
 #
 # Copyright NfQuery Team Members
 
+<<<<<<< HEAD
 #import sys
 #import os
 #from distutils.core import setup
 
+=======
+>>>>>>> devel
 from setuptools import setup
 
 setup( 
        name='nfquery',
        version='1.0',
+<<<<<<< HEAD
        author = "Serdar Yigit",
+=======
+       author = "Serdar Yigit, Serhat Rifat Demircan, Ahmet Can Kepenek",
+>>>>>>> devel
        author_email = "syigitisk@gmail.com",
        description = ("A thing"),
        license = "BSD",
        keywords = "test setup",
+<<<<<<< HEAD
        #url = "http://packages.python.org/an_example_pypi_project",
 	   packages=['nfquery'],
        scripts=['bin/nfqueryd'],
@@ -51,3 +59,13 @@ setup(
 #os.chown('/usr/bin/nfquery.py','serdar','serdar')
 #os.chown('/etc/nfquery.conf','serdar','serdar')
 
+=======
+       packages=['nfquery'],
+       scripts=['bin/nfqueryd'],
+       zip_safe = False,
+       data_files = [
+            ('/etc/',['./cfg/nfquery.conf'])
+       ],
+     )
+
+>>>>>>> devel

@@ -16,6 +16,7 @@ NfQuery v1.0 : Coklu Alan Ortamlarinda Saldiri Analizi icin Cerceve
 
 NfQuery Nedir?
 ================
+<<<<<<< HEAD
 NfQuery, netflow analiz araci NfSen uzerine kurulu bir eklenti (Plug-in) ve bu eklentiyi besleyen bir sorgu sunucusu 
 (QueryServer) olmak uzere iki bilesenden olusan, sunucu-istemci mimarisine sahip bir guvenlik yaklasimidir. NfQuery, 
 internet uzerinde erisilebilir durumda olan guvenlik verilerini/gunluklerini biraraya getirerek isler ve bu verilerden
@@ -46,12 +47,30 @@ Kaynaklar, tehdit ve guvenlik bilgilerini/gunluklarini saglayan ana bilesenlerdi
 kriter sagladigi bilgiler uzerinden netflow sorgulari uretilebilmesidir. Botnet, sunucu listeleri (Amada, SpyEye), DNS kara listesi 
 (DShield), kotu niyetli alanlar ve dolandirici sitelerinin listesi, Balkupleri, Saldiri Onleme Sistemleri, Saldiri Tespit 
 Sistemleri gibi sistemler gunluk verilerle NfQuery cercevesine veri saglayabilir.
+=======
+NfQuery'nin temel islevi, sorgu sunucusuna kayitli organizasyonlar ve alanlar icin kullanilmak uzere yararli sorgular uretmek. Sorgu sunucusundan alinan sorgular, organizasyonların topladiklari netflow verisi uzerinde calistirilir. Sorgularin calismasi sonucu NfSen Plug-in'indeki akis verisinde bulunan iliskili tehtit ve saldiri bilgilerini icerir. Tehdit veya saldiri algilandiginda uygulanan sorgulara iliskin Plug-in uyari uretir. Herbir Plug-in'deki saldiri istatistikleri toplama ve yorumlama tarafindan coklu-alan agi tehdit egilimleri icin genel bir bakis olusturulur. Sonuc olarak NfSen'in uyari sistemi kullanilarak, NfQuery coklu alan aglari icin bir tehdit algilamasi ve guvenlik uyari sistemi olmus olur.
+
+Bilesenler
+-------------
+a. Sorgu Sunucusu
+Sorgu sunucusu sistemin merkezinde yer alir ve tum bilesenler arasindaki baglantilari kurar. Sorgu sunucusu; sorgu uretici, sorgu yonetici ve sorgu deposu olarak 3 alt elemandan olusur.
+
+b. NfQuery Plug-in
+NfQuery Plug-in her bir alan tarafinda NfSen uzerinde kuruludur. Yoneticinin isteklerini gerceklestirmek icin sorgu sunucusu ile iletisime gecer. Yeni sorgulari almak, sorgu listesini guncellemek, istatistik raporlari alma gibi islemler gerceklestirir.
+
+c. Kaynaklar
+NfQuery kaynaklari tehdit bilgilerini saglayan ana bilesenlerdir. Bu bilesen kamuya acik, kullanimda olan kaynaklardir. Botnet, sunucu listeleri (Amada, SpyEye), DNS kara listesi (DShield), kotu niyetli alanlar ve dolandirici sitelerinin listesi, Balkupleri, Saldiri Onleme Sistemleri, Saldiri Tespit Sistemleri gibi sistemler gunluk verilerle NfQuery cercevesine veri saglayabilir.
+>>>>>>> devel
 
 
 
 Bagimliliklar
 ===============
+<<<<<<< HEAD
 Platform : Linux
+=======
+Platform : Ubuntu
+>>>>>>> devel
 Python Versiyon : Python 2.7.3, Python 2.7-dev
 Python Modulleri : config, MySQLdb, storm, termcolor, txJSON-RPC, netaddr
 
@@ -59,7 +78,11 @@ Python Modulleri : config, MySQLdb, storm, termcolor, txJSON-RPC, netaddr
 
 Son Versiyon
 -------------
+<<<<<<< HEAD
 Son versiyonun detayli bilgilerini NfQuery'nin resmi web sayfasinda bulabilirsiniz.
+=======
+Son versiyonun detayli bilgileri NfQuery'nin resmi web sayfasinda bulabilirsiniz.
+>>>>>>> devel
 http://nfquery.ulakbim.gov.tr
 
 
@@ -82,8 +105,15 @@ LICENCE dosyasina bakabilirsiniz.
 
 
 
+<<<<<<< HEAD
 Yazarlar
 ==========
 Serdar Yigit <syigitisk@gmail.com>
+=======
+
+Yazarlar
+==========
+Serdar Yigit <serdar.yigit@tubitak.gov.tr>
+>>>>>>> devel
 Ahmet Can Kepenek <ahmetcan.kepenek@gmail.com>
 Serhat Rifat Demircan <demircan.serhat@gmail.com>

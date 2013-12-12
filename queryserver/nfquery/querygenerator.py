@@ -24,7 +24,10 @@ import subprocess
 import itertools
 
 # nfquery imports
+<<<<<<< HEAD
 import db
+=======
+>>>>>>> devel
 import logger
 import models
 from models import *
@@ -39,7 +42,11 @@ __all__ = ['QueryGenerator']
 
 class QueryGenerator:
 
+<<<<<<< HEAD
     def __init__(self, sources):
+=======
+    def __init__(self, store, sources):
+>>>>>>> devel
         self.qglogger = logger.createLogger('querygenerator')
         self.qglogger.debug('In %s' % sys._getframe().f_code.co_name)
         self.qglogger.info('Starting Query Generator')
@@ -60,10 +67,20 @@ class QueryGenerator:
                               'bpp', 
                               'AS', 
                               'scale' ]
+<<<<<<< HEAD
         self.store = db.get_store()
         self.sources = sources
  
 
+=======
+        self.store = store
+        self.sources = sources
+ 
+
+    def setStore(self, store):
+        self.store = store
+
+>>>>>>> devel
     def createQuery(self, parser):
         try:
             # Load Parser Output
